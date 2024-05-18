@@ -1,0 +1,23 @@
+{{define "content"}}
+<h2>Projects</h2>
+
+<h3>Create a new project</h3>
+<form method="POST" action="/projects">
+    <label for="name">Project Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+    <br>
+    <button type="submit">Create Project</button>
+</form>
+
+<h3>Your Projects</h3>
+<ul>
+    {{range .Projects}}
+        <li>{{.Name}} - {{.Description}}</li>
+    {{else}}
+        <li>No projects found.</li>
+    {{end}}
+</ul>
+{{end}}

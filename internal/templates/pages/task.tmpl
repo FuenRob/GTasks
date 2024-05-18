@@ -1,0 +1,38 @@
+{{define "content"}}
+<h2>Tasks</h2>
+
+<h3>Create a new task</h3>
+<form method="POST" action="/tasks">
+    <label for="name">Task Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="project">Project:</label>
+    <select id="project" name="project_id">
+        {{range .Projects}}
+            <option value="{{.ID}}">{{.Name}}</option>
+        {{else}}
+            <option disabled>No projects available</option>
+        {{end}}
+    </select>
+    <br>
+    <label for="state">State:</label>
+    <select id="state" name="state_id">
+        {{range .States}}
+            <option value="{{.ID}}">{{.Name}}</option>
+        {{else}}
+            <option disabled>No states available</option>
+        {{end}}
+    </select>
+    <br>
+    <button type="submit">Create Task</button>
+</form>
+
+<h3>Your Tasks</h3>
+<ul>
+    {{range .Tasks}}
+        <li>{{.Name}} - Project: {{.ProjectName}} - State: {{.StateName}}</li>
+    {{else}}
+        <li>No tasks found.</li>
+    {{end}}
+</ul>
+{{end}}
